@@ -1,0 +1,186 @@
+/* Reset some default styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #fff;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #111;
+}
+
+header .logo img {
+    width: 50px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #ff0000;
+}
+
+/* Download Section */
+.download {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 20px;
+    background-color: #222;
+}
+
+.download .content {
+    flex: 1;
+    padding-right: 30px;
+}
+
+.download h1 {
+    font-size: 40px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.download p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.download .btn {
+    padding: 15px 30px;
+    background-color: #ff0000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.download .btn:hover {
+    background-color: #d10000;
+}
+
+.download .image img {
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Platform buttons */
+.platform-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.platform-btn {
+    display: inline-block;
+    width: 70px;  /* Square size */
+    height: 70px; /* Square size */
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid #fff;
+    transition: transform 0.3s;
+}
+
+.platform-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.platform-btn:hover {
+    transform: scale(1.1);
+}
+
+/* System Requirements Section */
+.system-requirements {
+    padding: 50px 20px;
+    background-color: #333;
+}
+
+.system-requirements h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ff0000;
+}
+
+.requirements {
+    display: flex;
+    justify-content: space-between;
+}
+
+.requirements .min-requirements, .requirements .rec-requirements {
+    flex: 1;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.requirements h3 {
+    font-size: 24px;
+    color: #ff0000;
+    margin-bottom: 20px;
+}
+
+.requirements ul {
+    list-style: none;
+}
+
+.requirements ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    padding: 20px;
+    text-align: center;
+}
+
+footer .footer-content p {
+    font-size: 16px;
+    color: #fff;
+}
+.platform-btn.paid {
+    position: relative;
+}
+
+.platform-btn.paid .price {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+}

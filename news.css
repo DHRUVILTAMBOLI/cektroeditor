@@ -1,0 +1,151 @@
+/* Reset and base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    background: #0f0f0f;
+}
+
+/* Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #1a1a1a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px; /* Adjust as needed */
+    height: auto;
+    margin-right: 10px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+.navbar a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.navbar a:hover {
+    color: #ff0000;
+}
+
+/* Hero Section */
+.hero {
+    background: url('Wallpaper.png') no-repeat center center/cover;
+    height: 90vh;
+    position: relative;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 700px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.btn {
+    padding: 12px 30px;
+    background: #ffffff;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+.btn:hover {
+    background: #ff0000;
+}
+
+/* Footer */
+.footer {
+    background: #1a1a1a;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #999;
+    border-top: 1px solid #333;
+}
+/* News Section */
+.news-section {
+    background-color: #1e1e1e;
+    padding: 50px 10%;
+    color: #fff;
+}
+
+.news-section h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.news-item img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.news-content {
+    max-width: 700px;
+}
+
+.news-content h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ff0000;
+}
+
+.news-content p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.news-date {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .news-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .news-item img {
+        width: 90%;
+    }
+}
+

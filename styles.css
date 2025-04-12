@@ -1,0 +1,86 @@
+/* Reset and base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    background: #0f0f0f;
+}
+
+/* Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #1a1a1a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px; /* Adjust as needed */
+    height: auto;
+    margin-right: 10px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+.navbar a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.navbar a:hover {
+    color: #ff0000;
+}
+
+/* Hero Section */
+.hero {
+    background: url('Wallpaper.png') no-repeat center center/cover;
+    height: 90vh;
+    position: relative;
+    text-align: center;
+}
+
+.hero-content {
+    position: absolute;
+    top: 70vh; /* vertical: move down relative to viewport height */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    color: #fff;
+    width: 100%;
+    max-width: 700px;
+}
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-content .btn {
+    padding: 12px 30px;
+    background: #ffffff;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+.hero-content .btn:hover {
+    background: #ff0000;
+}
+
+

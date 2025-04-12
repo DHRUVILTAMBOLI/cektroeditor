@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment for HUNTER HALL PART-II</title>
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Rockstar Games Logo">
+        </div>
+    </header>
+    
+    <section class="payment-section">
+        <h1>Complete Your Payment</h1>
+        <p>To download HUNTER HALL PART-II, please complete your payment of $5</p>
+        
+        <div class="payment-options">
+            <div class="payment-option">
+                <h3>Pay Only UPI</h3>
+                <button onclick="window.location.href='https://getupilink.com/upi/pratiksha.tamboli79@oksbi?am=430'">Pay via UPI</button> <!-- Replace with real UPI link -->
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <p>™ Old 2020 CEKTRO Editor</p>
+    </footer>
+    <script>
+        function processPayment(paymentMethod) {
+            // Simulate payment processing delay (replace this with actual payment gateway code)
+            alert("Processing payment via " + paymentMethod);
+
+            // Simulate successful payment (after payment is complete)
+            setTimeout(function() {
+                // Once payment is complete, redirect to download page
+                window.location.href = "File.html"; // This is where the download begins
+            }, 3000); // Delay of 3 seconds to simulate payment processing
+        }
+    </script>
+</body>
+</html>

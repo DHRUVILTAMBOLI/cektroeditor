@@ -1,0 +1,143 @@
+/* Reset and base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    background: #0f0f0f;
+}
+
+/* Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #1a1a1a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+.navbar a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.navbar a:hover {
+    color: #ff0000;
+}
+
+/* Hero Section */
+.hero {
+    background: none; /* Background removed */
+    height: 90vh;
+    position: relative;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 700px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Button */
+.btn {
+    padding: 12px 30px;
+    background: #ffffff;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+.btn:hover {
+    background: #ff0000;
+    color: #fff;
+}
+
+/* Footer */
+.footer {
+    background: #1a1a1a;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #999;
+    border-top: 1px solid #333;
+}
+
+/* Platform Section and Items */
+/* Platform Section and Items */
+.platform-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.platform-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ff0000;
+}
+
+.platform-items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #fd0000;
+    background-color: #494949;
+    margin: 20px auto;
+    border-radius: 8px;
+    width: auto; /* Let the width adjust automatically based on content */
+    height: auto; /* Let the height adjust automatically based on content */
+    max-width: 300px; /* Optional: You can use this to limit the maximum width */
+}
+
+.item-container img {
+    width: auto; /* Ensure the width of the image adjusts based on its natural size */
+    height: 64px; /* Set a fixed height */
+}
+
+.item-container button {
+    padding: 6px 24px;
+    background-color: #3d3d3d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.item-container button:hover {
+    background-color: #ff0000;
+}
