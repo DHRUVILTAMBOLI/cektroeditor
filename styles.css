@@ -25,6 +25,11 @@ body {
     transition: opacity 0.5s ease;
 }
 
+/* Fallback: Hide loading screen if JavaScript is disabled */
+.no-js .loading-screen {
+    display: none;
+}
+
 .loading-content {
     text-align: center;
     animation: fadeInUp 1s ease;
@@ -86,6 +91,11 @@ body {
 }
 
 /* Fade Out Animations */
+.loading-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .loading-screen.fade-out .loading-logo {
     animation: logoFadeOut 0.8s ease;
 }
@@ -119,6 +129,12 @@ body {
 .main-content.hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+/* Fallback: Show main content if JavaScript is disabled */
+.no-js .main-content {
+    opacity: 1 !important;
+    pointer-events: auto !important;
 }
 
 /* Header */

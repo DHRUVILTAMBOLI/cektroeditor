@@ -6,13 +6,18 @@
     <title>CEKTRO Editor | Home</title>
     <link rel="icon" type="image/png" href="./logo.png">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Remove no-js class if JavaScript is enabled
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
 </head>
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="loading-logo">
-                <img src="./logo.png" alt="CEKTRO Logo" class="logo-img">
+                <img src="./logo.png" alt="CEKTRO Logo" class="logo-img" onerror="this.style.display='none'">
                 <h1>CEKTRO <span>Editor</span></h1>
             </div>
             <div class="loading-bar">
@@ -26,7 +31,7 @@
     <div id="main-content" class="main-content hidden">
         <header class="main-header">
             <div class="logo">
-                <img src="./logo.png" alt="CEKTRO Logo" class="logo-img">
+                <img src="./logo.png" alt="CEKTRO Logo" class="logo-img" onerror="this.style.display='none'">
                 <h1>CEKTRO <span>Editor</span></h1>
             </div>
             <nav class="navbar">
@@ -57,41 +62,71 @@
     </div>
 
     <script>
-        // Loading screen functionality
-        window.addEventListener('load', function() {
+        // Loading screen functionality with fallback
+        function initLoadingScreen() {
             const loadingScreen = document.getElementById('loading-screen');
             const mainContent = document.getElementById('main-content');
             const loadingProgress = document.querySelector('.loading-progress');
             
-            // Handle logo loading errors
-            const logoImages = document.querySelectorAll('.logo-img');
-            logoImages.forEach(img => {
-                img.onerror = function() {
-                    this.style.display = 'none';
-                    console.log('Logo image failed to load');
-                };
-            });
+            // Fallback: If elements don't exist, show content immediately
+            if (!loadingScreen || !mainContent || !loadingProgress) {
+                console.log('Loading screen elements not found, showing content immediately');
+                if (mainContent) {
+                    mainContent.classList.remove('hidden');
+                }
+                return;
+            }
             
             // Simulate loading progress
             let progress = 0;
             const progressInterval = setInterval(() => {
                 progress += 2;
-                loadingProgress.style.width = progress + '%';
+                if (loadingProgress) {
+                    loadingProgress.style.width = progress + '%';
+                }
                 
                 if (progress >= 100) {
                     clearInterval(progressInterval);
                     
                     // Hide loading screen after 2 seconds
                     setTimeout(() => {
-                        loadingScreen.classList.add('fade-out');
+                        if (loadingScreen) {
+                            loadingScreen.classList.add('fade-out');
+                        }
                         
                         setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                            mainContent.classList.remove('hidden');
+                            if (loadingScreen) {
+                                loadingScreen.style.display = 'none';
+                            }
+                            if (mainContent) {
+                                mainContent.classList.remove('hidden');
+                            }
                         }, 800);
                     }, 2000);
                 }
             }, 40); // 40ms intervals to complete in 2 seconds
+        }
+
+        // Try to initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initLoadingScreen);
+        } else {
+            initLoadingScreen();
+        }
+
+        // Fallback: If still not working, initialize after window load
+        window.addEventListener('load', function() {
+            // Check if loading screen is still visible after 3 seconds
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                const mainContent = document.getElementById('main-content');
+                
+                if (loadingScreen && loadingScreen.style.display !== 'none' && mainContent) {
+                    console.log('Loading screen fallback: showing content');
+                    loadingScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                }
+            }, 3000);
         });
     </script>
 </body>
