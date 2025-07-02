@@ -124,6 +124,8 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
 }
 
 .hamburger span {
@@ -132,6 +134,11 @@ h1, h2, h3, h4, h5, h6 {
     background: #ffffff;
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger:hover span {
+    background: #ff6b35;
 }
 
 /* Hero Section */
@@ -1066,13 +1073,75 @@ html {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .video-container,
+    .map-container,
+    .player-container {
+        gap: 2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-menu {
         display: none;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 2rem 0;
+        border-top: 1px solid rgba(255,107,53,0.2);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+        transform: translateY(0);
+    }
+    
+    .nav-menu li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+    
+    .nav-menu a {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        display: block;
     }
     
     .hamburger {
         display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
     
     .hero-title {
@@ -1087,6 +1156,15 @@ html {
     .map-container,
     .abilities-container,
     .download-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .player-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .abilities-list {
         grid-template-columns: 1fr;
     }
     
@@ -1122,6 +1200,14 @@ html {
         padding: 0 15px;
     }
     
+    .nav-container {
+        padding: 1rem 15px;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
     .hero-title {
         font-size: 2.5rem;
     }
@@ -1132,6 +1218,42 @@ html {
     
     .section-title {
         font-size: 1.8rem;
+    }
+    
+    .player-info h3 {
+        font-size: 2.5rem;
+    }
+    
+    .player-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .abilities-list {
+        gap: 0.5rem;
+    }
+    
+    .ability-item {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .player-info h3 {
+        font-size: 2rem;
+    }
+    
+    .nav-menu a {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
     }
 }
 
