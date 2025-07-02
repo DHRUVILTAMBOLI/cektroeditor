@@ -4,51 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | CEKTRO Editor</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="./logo.png">
     <link rel="stylesheet" href="about.css">
+    <script>
+        // Remove no-js class if JavaScript is enabled
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
 </head>
 <body>
-    <header class="main-header">
-        <div class="logo">
-            <img src="logo.png" alt="CEKTRO Logo" class="logo-img">
-            <h1>CEKTRO <span>Editor</span></h1>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <img src="./logo.png" alt="CEKTRO Logo" class="logo-img" onerror="this.style.display='none'">
+                <h1>CEKTRO <span>Editor</span></h1>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Loading...</p>
         </div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="Download.html">Download</a></li>
-                <li><a href="News.html">News</a></li>
-                <li><a href="About.html">About</a></li>
-            </ul>
-        </nav>
-    </header>
+    </div>
 
-    <section class="about">
-        <div class="about-content">
-            <h2>About CEKTRO Editor</h2>
-            <p>CEKTRO Editor is the ultimate game development platform designed for both beginners and experienced developers. With an intuitive interface and robust feature set, CEKTRO helps you bring your creative ideas to life with ease. Whether you are working on 2D or 3D games, CEKTRO provides the tools you need to design, build, and test your game in real-time.</p>
+    <!-- Main Content -->
+    <div id="main-content" class="main-content hidden">
+        <header class="main-header">
+            <div class="logo">
+                <img src="./logo.png" alt="CEKTRO Logo" class="logo-img" onerror="this.style.display='none'">
+                <h1>CEKTRO <span>Editor</span></h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Download.html">Download</a></li>
+                    <li><a href="News.html">News</a></li>
+                    <li><a href="About.html" class="active">About</a></li>
+                </ul>
+            </nav>
+        </header>
 
-            <h3>Powerful Tools for Every Developer</h3>
-            <p>CEKTRO Editor offers a wide range of features tailored for game developers, including:</p>
-            <ul>
-                <li><strong>Real-Time Editing:</strong> Edit and preview your game in real time to streamline development.</li>
-                <li><strong>Advanced Scripting:</strong> Built-in support for C# and other scripting languages.</li>
-                <li><strong>High-Performance Engine:</strong> Optimized for high-performance gameplay and smooth rendering.</li>
-                <li><strong>Cross-Platform Support:</strong> Develop for platforms including PC devices.</li>
+        <div class="hero">
+            <div class="hero-content">
+                <h2>About CEKTRO Editor</h2>
+                <p>Learn more about our powerful game development platform.</p>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <div class="container">
+                <h3>Our Mission</h3>
+                <p>CEKTRO Editor is dedicated to providing powerful and intuitive game development tools for creators worldwide.</p>
                 
-            </ul>
-
-            <h3>Who Is CEKTRO For?</h3>
-            <p>CEKTRO is for anyone who has a passion for game development. Whether you are an indie developer, a hobbyist, or part of a large studio, CEKTRO gives you the flexibility to create amazing games without the steep learning curve. With its vast array of features and user-friendly interface, you can dive straight into your game development journey.</p>
-
-            <h3>Join the CEKTRO Community</h3>
-            <p>CEKTRO isn't just a tool – it's a thriving community of game developers. Join our forums, attend workshops, and collaborate with like-minded individuals to bring your projects to life. Together, we can create the next big hit in the gaming industry!</p>
-            <a href="Download.html" class="btn">Download CEKTRO Editor Now</a>
+                <h3>Features</h3>
+                <ul>
+                    <li>Advanced graphics engine</li>
+                    <li>User-friendly interface</li>
+                    <li>Cross-platform support</li>
+                    <li>Real-time preview</li>
+                </ul>
+            </div>
         </div>
-    </section>
 
-    <footer class="footer">
-        <p>™ Old 2020 CEKTRO Editor.</p>
-    </footer>
+        <footer class="footer">
+            <p> ™ 2020 Old CEKTRO Editor.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Loading screen functionality with fallback
+        function initLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            const loadingProgress = document.querySelector('.loading-progress');
+            
+            // Fallback: If elements don't exist, show content immediately
+            if (!loadingScreen || !mainContent || !loadingProgress) {
+                console.log('Loading screen elements not found, showing content immediately');
+                if (mainContent) {
+                    mainContent.classList.remove('hidden');
+                }
+                return;
+            }
+            
+            // Simulate loading progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                if (loadingProgress) {
+                    loadingProgress.style.width = progress + '%';
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    
+                    // Hide loading screen after 2 seconds
+                    setTimeout(() => {
+                        if (loadingScreen) {
+                            loadingScreen.classList.add('fade-out');
+                        }
+                        
+                        setTimeout(() => {
+                            if (loadingScreen) {
+                                loadingScreen.style.display = 'none';
+                            }
+                            if (mainContent) {
+                                mainContent.classList.remove('hidden');
+                            }
+                        }, 800);
+                    }, 2000);
+                }
+            }, 40); // 40ms intervals to complete in 2 seconds
+        }
+
+        // Try to initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initLoadingScreen);
+        } else {
+            initLoadingScreen();
+        }
+
+        // Fallback: If still not working, initialize after window load
+        window.addEventListener('load', function() {
+            // Check if loading screen is still visible after 3 seconds
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                const mainContent = document.getElementById('main-content');
+                
+                if (loadingScreen && loadingScreen.style.display !== 'none' && mainContent) {
+                    console.log('Loading screen fallback: showing content');
+                    loadingScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                }
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
