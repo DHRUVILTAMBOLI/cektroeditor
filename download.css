@@ -92,6 +92,10 @@ body {
 .platform-section {
     padding: 60px 20px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 .platform-title {
@@ -116,7 +120,6 @@ body {
     padding: 20px;
     border: 1px solid #fd0000;
     background-color: #494949;
-    margin: 20px auto;
     border-radius: 8px;
     width: auto; /* Let the width adjust automatically based on content */
     height: auto; /* Let the height adjust automatically based on content */
