@@ -45,48 +45,263 @@ header nav ul li a:hover {
     color: #ff0000;
 }
 
-/* Download Section */
-.download {
+/* Hero Section */
+.hero {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    min-height: 80vh;
     display: flex;
-    justify-content: space-between;
-    padding: 50px 20px;
-    background-color: #222;
+    align-items: center;
 }
 
-.download .content {
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-content {
     flex: 1;
-    padding-right: 30px;
+    max-width: 600px;
 }
 
-.download h1 {
-    font-size: 40px;
-    color: #fff;
-    margin-bottom: 20px;
+.game-title {
+    font-size: 48px;
+    color: #ff0000;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
 }
 
-.download p {
-    font-size: 18px;
+.game-story {
     margin-bottom: 30px;
 }
 
-.download .btn {
+.game-story h3 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ff0000;
+    padding-bottom: 5px;
+}
+
+.game-story p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ccc;
+    text-align: justify;
+}
+
+.game-features {
+    margin-bottom: 40px;
+}
+
+.game-features h3 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ff0000;
+    padding-bottom: 5px;
+}
+
+.game-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.game-features li {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.game-features li:before {
+    content: "▶";
+    color: #ff0000;
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 3px solid #ff0000;
+    transition: transform 0.3s ease;
+}
+
+.game-image:hover {
+    transform: scale(1.05);
+}
+
+.download-section {
+    margin-top: 30px;
+}
+
+.download-card {
+    background: rgba(255, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #ff0000;
+    text-align: center;
+}
+
+.download-card h3 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.btn {
     padding: 15px 30px;
     background-color: #ff0000;
     color: #fff;
     text-decoration: none;
-    font-size: 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-weight: bold;
+    border: 2px solid #ff0000;
 }
 
-.download .btn:hover {
-    background-color: #d10000;
+.btn:hover {
+    background-color: transparent;
+    color: #ff0000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
 }
 
-.download .image img {
-    width: 500px;
-    height: auto;
-    border-radius: 10px;
+/* Video Section */
+.video-section {
+    padding: 60px 20px;
+    background: #0f0f0f;
+}
+
+.video-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.video-container h2 {
+    font-size: 36px;
+    color: #ff0000;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 3px solid #ff0000;
+}
+
+.game-video {
+    width: 100%;
+    height: 450px;
+    display: block;
+    border-radius: 15px;
+}
+
+.video-description {
+    font-size: 16px;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .game-title {
+        font-size: 36px;
+    }
+    
+    .game-story p {
+        text-align: left;
+    }
+    
+    .game-features li {
+        text-align: left;
+    }
+    
+    .hero-image {
+        order: -1;
+    }
+    
+    .game-image {
+        max-width: 90%;
+    }
+    
+    .video-container h2 {
+        font-size: 28px;
+    }
+    
+    .video-wrapper {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 40px 15px;
+    }
+    
+    .game-title {
+        font-size: 28px;
+    }
+    
+    .game-story h3,
+    .game-features h3 {
+        font-size: 20px;
+    }
+    
+    .game-story p,
+    .game-features li {
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+    
+    .video-section {
+        padding: 40px 15px;
+    }
+    
+    .video-container h2 {
+        font-size: 24px;
+    }
 }
 
 /* Platform buttons */

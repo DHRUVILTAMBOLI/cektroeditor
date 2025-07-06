@@ -3,32 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEKTRO Editor | HUNTER HALL PART-2</title>
+    <title>CEKTRO Editor | HUNTER HALL PART-1</title>
     <link rel="icon" type="image/png" href="./logo.png">
-    <link rel="stylesheet" href="HH1.css">
-    <script>
-        // Remove no-js class if JavaScript is enabled
-        document.documentElement.classList.remove('no-js');
-        document.documentElement.classList.add('js');
-    </script>
+    <link rel="stylesheet" href="gameDownload.css">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <img src="./logo.png" alt="CEKTRO Logo" class="logo-img" onerror="this.style.display='none'">
-                <h1>CEKTRO <span>Editor</span></h1>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <p class="loading-text">Loading...</p>
-        </div>
-    </div>
-
     <!-- Main Content -->
-    <div id="main-content" class="main-content hidden">
+    <div id="main-content" class="main-content">
         <header class="main-header">
             <div class="logo">
                 <img src="./logo.png" alt="CEKTRO Logo" class="logo-img" onerror="this.style.display='none'">
@@ -45,18 +26,56 @@
         </header>
 
         <div class="hero">
-            <div class="hero-content">
-                <h2>HUNTER HALL PART-1</h2>
-                <p>Download the latest version of Hunter Hall Part 1.</p>
-                
-                <div class="download-section">
-                    <div class="download-card">
-                        <h3>Game Download</h3>
-                        <a href="#" class="btn">Download Game</a>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2 class="game-title">HUNTER HALL PART-1</h2>
+                    <div class="game-story">
+                        <h3>Story</h3>
+                        <p>Embark on an epic journey through the mysterious Hunter Hall, where ancient secrets and powerful enemies await. As a skilled hunter, you must navigate through treacherous corridors, solve intricate puzzles, and face the darkness that lurks within. With enhanced graphics and immersive gameplay, Hunter Hall Part 1 introduces you to the beginning of this legendary adventure.</p>
                     </div>
+                    
+                    <div class="game-features">
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Enhanced graphics and visual effects</li>
+                            <li>Immersive sound design</li>
+                            <li>Challenging puzzles and combat</li>
+                            <li>Multiple difficulty levels</li>
+                            <li>Hidden secrets and collectibles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="download-section">
+                        <div class="download-card">
+                            <h3>Game Download</h3>
+                            <a href="https://cektroeditor.itch.io/hunter-hall-ultimate" class="btn" onclick="trackDownload('hh1')">Download Game</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="H1.png" alt="Hunter Hall Part 1" class="game-image">
                 </div>
             </div>
         </div>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <div class="video-container">
+                <h2>Game Trailer</h2>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/8Fmhoj00Okg" 
+                        title="Hunter Hall Part 1 Trailer" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        class="game-video">
+                    </iframe>
+                </div>
+                <p class="video-description">Watch the official trailer for Hunter Hall Part 1 and experience the beginning of the hunt!</p>
+            </div>
+        </section>
 
         <footer class="footer">
             <p> ™ 2020 Old CEKTRO Editor.</p>
@@ -64,72 +83,95 @@
     </div>
 
     <script>
-        // Loading screen functionality with fallback
-        function initLoadingScreen() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const mainContent = document.getElementById('main-content');
-            const loadingProgress = document.querySelector('.loading-progress');
+        // Dashboard tracking functionality
+        function trackPageView(page) {
+            // Get existing dashboard stats or create new ones
+            let stats = JSON.parse(localStorage.getItem('dashboardStats') || '{}');
             
-            // Fallback: If elements don't exist, show content immediately
-            if (!loadingScreen || !mainContent || !loadingProgress) {
-                console.log('Loading screen elements not found, showing content immediately');
-                if (mainContent) {
-                    mainContent.classList.remove('hidden');
-                }
-                return;
+            // Initialize if not exists
+            if (!stats.pageViews) {
+                stats.pageViews = {
+                    index: 0,
+                    rise: 0,
+                    hh1: 0,
+                    hh2: 0,
+                    download: 0,
+                    news: 0,
+                    about: 0,
+                    dashboard: 0
+                };
             }
             
-            // Simulate loading progress
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += 2;
-                if (loadingProgress) {
-                    loadingProgress.style.width = progress + '%';
-                }
-                
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                    
-                    // Hide loading screen after 2 seconds
-                    setTimeout(() => {
-                        if (loadingScreen) {
-                            loadingScreen.classList.add('fade-out');
-                        }
-                        
-                        setTimeout(() => {
-                            if (loadingScreen) {
-                                loadingScreen.style.display = 'none';
-                            }
-                            if (mainContent) {
-                                mainContent.classList.remove('hidden');
-                            }
-                        }, 800);
-                    }, 2000);
-                }
-            }, 40); // 40ms intervals to complete in 2 seconds
+            // Increment the page view count
+            stats.pageViews[page] = (stats.pageViews[page] || 0) + 1;
+            
+            // Save back to localStorage
+            localStorage.setItem('dashboardStats', JSON.stringify(stats));
+            
+            // Add activity entry
+            let activity = stats.activity || [];
+            activity.push({
+                type: 'view',
+                title: `${page.charAt(0).toUpperCase() + page.slice(1)} page viewed`,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Keep only last 50 activities
+            if (activity.length > 50) {
+                activity = activity.slice(-50);
+            }
+            
+            stats.activity = activity;
+            localStorage.setItem('dashboardStats', JSON.stringify(stats));
+            
+            console.log(`Page view tracked: ${page} (Total: ${stats.pageViews[page]})`);
         }
-
-        // Try to initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initLoadingScreen);
-        } else {
-            initLoadingScreen();
-        }
-
-        // Fallback: If still not working, initialize after window load
-        window.addEventListener('load', function() {
-            // Check if loading screen is still visible after 3 seconds
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                const mainContent = document.getElementById('main-content');
-                
-                if (loadingScreen && loadingScreen.style.display !== 'none' && mainContent) {
-                    console.log('Loading screen fallback: showing content');
-                    loadingScreen.style.display = 'none';
-                    mainContent.classList.remove('hidden');
-                }
-            }, 3000);
+        
+        // Track page view when page loads
+        window.addEventListener('load', () => {
+            trackPageView('hh1');
         });
+        
+        // Also track when page becomes visible (for better accuracy)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                trackPageView('hh1');
+            }
+        });
+
+        // Track downloads
+        function trackDownload(game) {
+            let stats = JSON.parse(localStorage.getItem('dashboardStats') || '{}');
+            
+            // Initialize downloads if not exists
+            if (!stats.downloads) {
+                stats.downloads = {
+                    hh1: 0,
+                    hh2: 0
+                };
+            }
+            
+            // Increment download count
+            stats.downloads[game] = (stats.downloads[game] || 0) + 1;
+            
+            // Add activity entry
+            let activity = stats.activity || [];
+            activity.push({
+                type: 'download',
+                title: `${game.toUpperCase()} downloaded`,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Keep only last 50 activities
+            if (activity.length > 50) {
+                activity = activity.slice(-50);
+            }
+            
+            stats.activity = activity;
+            localStorage.setItem('dashboardStats', JSON.stringify(stats));
+            
+            console.log(`Download tracked: ${game} (Total: ${stats.downloads[game]})`);
+        }
     </script>
 </body>
 </html>

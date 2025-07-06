@@ -6,29 +6,10 @@
     <title>CEKTRO Editor | HUNTER HALL PART-2</title>
     <link rel="icon" type="image/png" href="./logo.png">
     <link rel="stylesheet" href="gameDownload.css">
-    <script>
-        // Remove no-js class if JavaScript is enabled
-        document.documentElement.classList.remove('no-js');
-        document.documentElement.classList.add('js');
-    </script>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <img src="./logo.png" alt="CEKTRO Logo" class="logo-img" onerror="this.style.display='none'">
-                <h1>CEKTRO <span>Editor</span></h1>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <p class="loading-text">Loading...</p>
-        </div>
-    </div>
-
     <!-- Main Content -->
-    <div id="main-content" class="main-content hidden">
+    <div id="main-content" class="main-content">
         <header class="main-header">
             <div class="logo">
                 <img src="./logo.png" alt="CEKTRO Logo" class="logo-img" onerror="this.style.display='none'">
@@ -45,18 +26,56 @@
         </header>
 
         <div class="hero">
-            <div class="hero-content">
-                <h2>HUNTER HALL PART-2</h2>
-                <p>Download the latest version of Hunter Hall Part 2.</p>
-                
-                <div class="download-section">
-                    <div class="download-card">
-                        <h3>Game Download</h3>
-                        <a href="#" class="btn">Download Game</a>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2 class="game-title">HUNTER HALL PART-2</h2>
+                    <div class="game-story">
+                        <h3>Story</h3>
+                        <p>Embark on an epic journey through the mysterious Hunter Hall, where ancient secrets and powerful enemies await. As a skilled hunter, you must navigate through treacherous corridors, solve intricate puzzles, and face the darkness that lurks within. With enhanced graphics and immersive gameplay, Hunter Hall Part 2 takes you deeper into the legend than ever before.</p>
                     </div>
+                    
+                    <div class="game-features">
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Enhanced graphics and visual effects</li>
+                            <li>Immersive sound design</li>
+                            <li>Challenging puzzles and combat</li>
+                            <li>Multiple difficulty levels</li>
+                            <li>Hidden secrets and collectibles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="download-section">
+                        <div class="download-card">
+                            <h3>Game Download</h3>
+                            <a href="https://cektroeditor.itch.io/hh2" class="btn" onclick="trackDownload('hh2')">Download Game</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="H2.jpg" alt="Hunter Hall Part 2" class="game-image">
                 </div>
             </div>
         </div>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <div class="video-container">
+                <h2>Game Trailer</h2>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/fIOLfysK7sQ" 
+                        title="Hunter Hall Part 2 Trailer" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        class="game-video">
+                    </iframe>
+                </div>
+                <p class="video-description">Watch the official trailer for Hunter Hall Part 2 and experience the thrill of the hunt!</p>
+            </div>
+        </section>
 
         <footer class="footer">
             <p> ™ 2020 Old CEKTRO Editor.</p>
@@ -64,72 +83,142 @@
     </div>
 
     <script>
-        // Loading screen functionality with fallback
-        function initLoadingScreen() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const mainContent = document.getElementById('main-content');
-            const loadingProgress = document.querySelector('.loading-progress');
-            
-            // Fallback: If elements don't exist, show content immediately
-            if (!loadingScreen || !mainContent || !loadingProgress) {
-                console.log('Loading screen elements not found, showing content immediately');
-                if (mainContent) {
-                    mainContent.classList.remove('hidden');
+        // Enhanced tracking functionality
+        class PageTracker {
+            constructor() {
+                this.initializeStats();
+                this.trackPageView();
+                this.trackIP();
+            }
+
+            initializeStats() {
+                if (!localStorage.getItem('dashboardStats')) {
+                    localStorage.setItem('dashboardStats', JSON.stringify({
+                        totalViews: 0,
+                        totalDownloads: 0,
+                        pageViews: {
+                            index: 0,
+                            rise: 0,
+                            hh1: 0,
+                            hh2: 0,
+                            download: 0,
+                            news: 0,
+                            about: 0
+                        },
+                        downloads: {
+                            hh1: 0,
+                            hh2: 0
+                        },
+                        activity: [],
+                        ipAddresses: [],
+                        dailyStats: this.getLast7Days()
+                    }));
                 }
-                return;
+            }
+
+            getLast7Days() {
+                const days = [];
+                for (let i = 6; i >= 0; i--) {
+                    const date = new Date();
+                    date.setDate(date.getDate() - i);
+                    days.push({
+                        date: date.toISOString().split('T')[0],
+                        views: 0,
+                        downloads: 0
+                    });
+                }
+                return days;
+            }
+
+            trackPageView() {
+                const stats = JSON.parse(localStorage.getItem('dashboardStats'));
+                stats.pageViews.hh2 = (stats.pageViews.hh2 || 0) + 1;
+                
+                // Update daily stats
+                const today = new Date().toISOString().split('T')[0];
+                let todayStats = stats.dailyStats.find(day => day.date === today);
+                if (!todayStats) {
+                    todayStats = { date: today, views: 0, downloads: 0 };
+                    stats.dailyStats.push(todayStats);
+                }
+                todayStats.views++;
+                
+                // Add activity
+                stats.activity.push({
+                    type: 'view',
+                    title: 'Hunter Hall Part 2 page viewed',
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Keep only last 50 activities
+                if (stats.activity.length > 50) {
+                    stats.activity = stats.activity.slice(-50);
+                }
+                
+                localStorage.setItem('dashboardStats', JSON.stringify(stats));
+                console.log('Hunter Hall Part 2 page view tracked');
+            }
+
+            trackIP() {
+                // Simulate IP tracking
+                const mockIPs = [
+                    '192.168.1.100',
+                    '10.0.0.50',
+                    '172.16.0.25',
+                    '203.0.113.42',
+                    '198.51.100.123'
+                ];
+                
+                const stats = JSON.parse(localStorage.getItem('dashboardStats'));
+                const randomIP = mockIPs[Math.floor(Math.random() * mockIPs.length)];
+                
+                stats.ipAddresses.push({
+                    address: randomIP,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Keep only last 100 IPs
+                if (stats.ipAddresses.length > 100) {
+                    stats.ipAddresses = stats.ipAddresses.slice(-100);
+                }
+                
+                localStorage.setItem('dashboardStats', JSON.stringify(stats));
+                console.log(`IP tracked: ${randomIP}`);
+            }
+        }
+
+        // Initialize tracking
+        const tracker = new PageTracker();
+
+        // Track downloads
+        function trackDownload(game) {
+            const stats = JSON.parse(localStorage.getItem('dashboardStats'));
+            stats.downloads[game] = (stats.downloads[game] || 0) + 1;
+            
+            // Update daily stats
+            const today = new Date().toISOString().split('T')[0];
+            let todayStats = stats.dailyStats.find(day => day.date === today);
+            if (!todayStats) {
+                todayStats = { date: today, views: 0, downloads: 0 };
+                stats.dailyStats.push(todayStats);
+            }
+            todayStats.downloads++;
+            
+            // Add activity
+            stats.activity.push({
+                type: 'download',
+                title: `${game.toUpperCase()} downloaded`,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Keep only last 50 activities
+            if (stats.activity.length > 50) {
+                stats.activity = stats.activity.slice(-50);
             }
             
-            // Simulate loading progress
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += 2;
-                if (loadingProgress) {
-                    loadingProgress.style.width = progress + '%';
-                }
-                
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                    
-                    // Hide loading screen after 2 seconds
-                    setTimeout(() => {
-                        if (loadingScreen) {
-                            loadingScreen.classList.add('fade-out');
-                        }
-                        
-                        setTimeout(() => {
-                            if (loadingScreen) {
-                                loadingScreen.style.display = 'none';
-                            }
-                            if (mainContent) {
-                                mainContent.classList.remove('hidden');
-                            }
-                        }, 800);
-                    }, 2000);
-                }
-            }, 40); // 40ms intervals to complete in 2 seconds
+            localStorage.setItem('dashboardStats', JSON.stringify(stats));
+            console.log(`Download tracked: ${game} (Total: ${stats.downloads[game]})`);
         }
-
-        // Try to initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initLoadingScreen);
-        } else {
-            initLoadingScreen();
-        }
-
-        // Fallback: If still not working, initialize after window load
-        window.addEventListener('load', function() {
-            // Check if loading screen is still visible after 3 seconds
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                const mainContent = document.getElementById('main-content');
-                
-                if (loadingScreen && loadingScreen.style.display !== 'none' && mainContent) {
-                    console.log('Loading screen fallback: showing content');
-                    loadingScreen.style.display = 'none';
-                    mainContent.classList.remove('hidden');
-                }
-            }, 3000);
-        });
     </script>
 </body>
 </html>
